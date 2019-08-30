@@ -107,3 +107,80 @@ class TimeSeriesIntradayRequest(APIRequest):
         tag = f"intraday_{interval}"
         APIRequest.__init__(self, "https://www.alphavantage.co/query", self.params, tag=tag)
 
+
+class TimeSeriesDailyRequest(APIRequest):
+    """
+    This API returns daily time series (date, daily open, daily high, daily low, daily close, daily volume) of the
+     global equity specified, covering 20+ years of historical data.
+
+    Required: symbol
+
+    The name of the equity of your choice. For example: symbol=MSFT
+
+    Optional: outputsize
+
+    By default, outputsize=compact. Strings compact and full are accepted with the following specifications: compact returns
+    only the latest 100 data points; full returns the full-length time series of 20+ years of historical data. The "compact"
+    option is recommended if you would like to reduce the data size of each API call.
+
+    Optional: datatype
+
+    By default, datatype=json. Strings json and csv are accepted with the following specifications: json returns the daily
+    time series in JSON format; csv returns the time series as a CSV (comma separated value) file.
+    """
+    def __init__(self, symbol: str, outputsize: str = "compact", datatype: str = "json"):
+        function = "TIME_SERIES_DAILY"
+        apikey = "X33OF6EG83E35R8A"
+        self.params = {
+            "function": function,
+            "symbol": symbol,
+            "outputsize": outputsize,
+            "datatype": datatype,
+            "apikey": apikey
+        }
+        tag = f"daily"
+        APIRequest.__init__(self, "https://www.alphavantage.co/query", self.params, tag=tag)
+
+
+class TimeSeriesWeeklyRequest(APIRequest):
+    """
+    This API returns weekly time series (last trading day of each week, weekly open, weekly high, weekly low, weekly close, weekly volume) of the global equity specified, covering 20+ years of historical data.
+
+    The latest data point is the prices and volume information for the week (or partial week) that contains the current trading day, updated realtime.
+
+    API Parameters:
+
+    ❚ Required: symbol
+
+    The name of the equity of your choice. For example: symbol=MSFT
+
+    ❚ Optional: datatype
+
+    By default, datatype=json. Strings json and csv are accepted with the following specifications: json returns the
+    weekly time series in JSON format; csv returns the time series as a CSV (comma separated value) file.
+    """
+    def __init__(self, symbol: str, datatype: str = "json"):
+        function = "TIME_SERIES_WEEKLY"
+        apikey = "X33OF6EG83E35R8A"
+        self.params = {
+            "function": function,
+            "symbol": symbol,
+            "datatype": datatype,
+            "apikey": apikey
+        }
+        tag = f"daily"
+        APIRequest.__init__(self, "https://www.alphavantage.co/query", self.params, tag=tag)
+
+
+class TimeSeriesMonthly(APIRequest):
+    def __init__(self, symbol: str, datatype: str = "json"):
+        function = "TIME_SERIES_WEEKLY"
+        apikey = "X33OF6EG83E35R8A"
+        self.params = {
+            "function": function,
+            "symbol": symbol,
+            "datatype": datatype,
+            "apikey": apikey
+        }
+        tag = f"daily"
+        APIRequest.__init__(self, "https://www.alphavantage.co/query", self.params, tag=tag)
